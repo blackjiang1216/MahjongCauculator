@@ -191,6 +191,11 @@
           height: 45px;
         }
 
+        .tileSize2{
+          width: 35px;
+          height: 45px;
+        }
+
         .iconSize {
           width: 30px;
           height: 30px;
@@ -217,7 +222,65 @@
           margin-bottom: -25px;
 
         }
-        
+
+
+        @media (max-width: 768px) {
+          /* 調整 header 和 footer 的 padding */
+          header, footer {
+            padding: 15px;
+          }
+
+          /* 調整字體大小 */
+          .subtitle {
+            font-size: 1.2em;
+          }
+
+          /* 重新配置 tile-input 的 grid 佈局 */
+          .tile-input {
+            grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+            gap: 10px;
+          }
+
+          /* 調整 tile-group padding */
+          .tile-group {
+            padding: 10px;
+          }
+
+          /* 調整按鈕大小 */
+          .tile-button {
+            width: 25px;
+            height: 25px;
+            font-size: 1em;
+          }
+
+          /* 調整計算和重設按鈕 */
+          #calculate, #reset {
+            padding: 8px 30px;
+            font-size: 1.2em;
+          }
+
+          /* 調整結果區域的高度 */
+          #result {
+            height: auto;
+            padding: 15px;
+            font-size: 1em;
+          }
+
+          /* 圖片大小調整 */
+          .tileSize, .faviconSize, .iconSize {
+            width: 50px;
+            height: 50px;
+          }
+
+          .nowTileSize {
+            height: auto;
+          }
+
+          .tileSize2{
+            width: 25px;
+            height: 25px;
+          }
+        }
     </style>
   </head>
   <body>
@@ -228,7 +291,6 @@
         </span>
       </h4>
       <h4 class="subtitle"><b>目前手牌</b></h4>
-      <span><img src="assets/images/finger.png" class="tileSize" /></span>
       <span class="nowTileSize" id="currentTiles"></span>
     </header>
     <div id="result">
@@ -397,7 +459,7 @@
                       for(let i=1;i < tile.counter+1;i++){
                           const tileGroup = document.createElement('span');
                           tileGroup.innerHTML = `
-                              <img src="${tile.image}" class="tileSize" />
+                              <img src="${tile.image}" class="tileSize2" />
                           `;
                           tileInput.appendChild(tileGroup);
                       }

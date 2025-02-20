@@ -418,10 +418,6 @@
 
           function updateTileCounter() {
             const counterElement = document.getElementById('nowTileCounter');
-            if (counterElement.textContent > 16) {
-              editHtml('result', '<img src="assets/images/boy_boring.png" /><b>唉唷!鄉親! 你的手牌超過16張了</b>');
-              return;
-            }
             let counter = 0;
             tileCounter.forEach(tile => {
               counter += tile.counter;
@@ -468,11 +464,12 @@
           }
 
           function isHand() {
-              return document.getElementById('nowTileCounter').textContent % 3 !== 1;
+              return Number(document.getElementById('nowTileCounter').textContent) % 3 !== 1;
           }
 
           window.joinToNowTiles = function (seq) {
-              if (document.getElementById('nowTileCounter').textContent > 16) {
+              if (Number(document.getElementById('nowTileCounter').textContent)+1 > 16) {
+                editHtml('result', '<img src="assets/images/boy_boring.png" /><b>唉唷!鄉親! 你的手牌超過16張了</b>');
                 return;
               }
               const tile = tileCounter.find(t => t.seq === seq);
@@ -504,6 +501,7 @@
           }
 
           document.getElementById('reset').addEventListener('click', function () {
+              document.getElementById('nowTileCounter').textContent = 0;
               tileCounter.forEach(tile => tile.counter = 0);
               renderTiles();
               reloadTiles();
